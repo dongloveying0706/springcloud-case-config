@@ -1,0 +1,22 @@
+spring:
+  profiles:
+    active:
+      - dev
+      - test
+---
+
+#dev环境
+spring:
+  profiles: dev
+  application:
+    name: springcloud-case-config-dev
+
+---
+
+#test环境
+spring:
+  profiles: test
+  application:
+    name: springcloud-case-config-test
+
+#注意，文件一定要以 UFT-8 的格式保存
