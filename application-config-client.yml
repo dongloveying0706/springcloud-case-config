@@ -1,0 +1,35 @@
+spring:
+  profiles:
+    active:
+      - dev
+      - test
+
+---
+
+#dev 环境配置
+spring:
+  application:
+    name: springcloud-case-config-client-dev
+  profiles: dev
+server:
+  port: 8201
+#eureka 注册配置
+eureka:
+  client:
+    service-url:
+      defaultZone: http://service.eureka7001.dev:7001/eureka
+
+---
+
+#test 环境配置
+spring:
+  application:
+    name: springcloud-case-config-client-test
+  profiles: test
+server:
+  port: 8203
+#eureka 注册配置
+eureka:
+  client:
+    service-url: 
+      defaultZone: http://service.eureka7001.test:7001/eureka
