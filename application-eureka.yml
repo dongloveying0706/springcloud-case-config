@@ -1,0 +1,79 @@
+spring:
+  profiles:
+    active:
+      - dev
+      - test
+---
+server:
+  port: 8003
+spring:
+  application:
+    name: springcloud-case-dept
+  profile: dev
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cloudDB03?serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+#eureka 注册配置
+eureka:
+  client:
+    service-url:
+      #eureka service 暴露出来的客户端注册地址,单机版
+      #defaultZone: http://localhost:7001/eureka
+      #集群版，向所有的eureka注册，注意多个连接之间的","前后不能加空格
+      defaultZone: http://service.eureka7001:7001/eureka,http://service.eureka7002:7002/eureka,http://service.eureka7003:7003/eureka
+  instance:
+    #eureka 客户端实例名
+    hostname: springcloud-case-dept-provider8003
+    #在eureka service（http://localhost:7001/eureka）
+    #网址的application Status展示名
+    instance-id: springcloud-case-dept-provider8003
+    #application Status超链接鼠标悬浮展示IP地址
+    prefer-ip-address: true
+
+---
+
+server:
+  port: 8002
+spring:
+  application:
+    name: springcloud-case-dept
+  profile: test
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cloudDB01?serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+#eureka 注册配置
+eureka:
+  client:
+    service-url:
+      #eureka service 暴露出来的客户端注册地址,单机版
+      #defaultZone: http://localhost:7001/eureka
+      #集群版，向所有的eureka注册，注意多个连接之间的","前后不能加空格
+      defaultZone: http://service.eureka7001:7001/eureka,http://service.eureka7002:7002/eureka,http://service.eureka7003:7003/eureka
+  instance:
+    #eureka 客户端实例名
+    hostname: springcloud-case-dept-provider8001
+    #在eureka service（http://localhost:7001/eureka）
+    #网址的application Status展示名
+    instance-id: springcloud-case-dept-provider8001
+    #application Status超链接鼠标悬浮展示IP地址
+    prefer-ip-address: true
+#mybatis配置
+mybatis:
+  mapper-locations: classpath*:com/**/mapper/xml/**.xml
+  type-aliases-package: com.springcloud
+  configuration:
+    use-generated-keys: true
+    map-underscore-to-camel-case: true
+
+#application Status超链接访问展示内容配置
+info:
+  app.name: springcloud-case-provider
+  company.name: www.zdk.com
+  build.artifactId: 11
+  build.version: 22
