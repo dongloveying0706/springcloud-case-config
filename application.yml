@@ -19,8 +19,11 @@ spring:
   application:
     name: springcloud-case-config-test
 
+
 spring:
-  test:
-    app: 123
+  profiles:
+    active:
+      - app
+      - ok
 
 #注意，文件一定要以 UFT-8 的格式保存
