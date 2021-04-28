@@ -59,8 +59,8 @@ eureka:
 info:
   app.name: springcloud-case-provider
   company.name: www.zdk.com
-  build.artifactId: @project.artifactId@
-  build.version: @project.version@
+  build.artifactId: 123
+  build.version: 23
 
 spring:
   application:
